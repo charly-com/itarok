@@ -1,5 +1,6 @@
 import './globals.css'
 import PWA from '../components/PWA'
+import Script from 'next/script'
 
 export const metadata = {
   title: 'iTárók — Learn Tarok Language',
@@ -29,6 +30,24 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <PWA />
+        <Script
+          id="service-worker-registration"
+          strategy="afterInteractive"
+        >
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                  .then(function(registration) {
+                    console.log('SW registered: ', registration);
+                  })
+                  .catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                  });
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   )

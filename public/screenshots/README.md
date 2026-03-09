@@ -1,21 +1,42 @@
 # PWA Screenshots
 
-This directory should contain screenshots of your PWA for app store listings.
+Place your PWA screenshot files directly in this directory.
 
 ## Required Screenshots:
 
-1. **home.png** (1280x720) - Wide screenshot showing the main app interface
-2. **lesson.png** (390x844) - Narrow screenshot showing a lesson in progress
+### 📱 **home.png** (1280×720 - Wide format)
+- **Purpose**: Show the main app interface and navigation
+- **Use case**: Desktop app stores, wide screen previews
+- **Content**: Main menu, navigation options, app branding
+
+### 📱 **lesson.png** (390×844 - Narrow format)
+- **Purpose**: Show an active lesson with vocabulary cards
+- **Use case**: Mobile app stores, phone previews
+- **Content**: Lesson interface, word cards, progress indicators
 
 ## How to create screenshots:
 
-1. Run your app locally: `npm run dev`
-2. Open in browser and take screenshots at the appropriate sizes
-3. Save them as PNG files in this directory
+1. **Run your app**: `npm run dev` → open `http://localhost:3000`
+2. **Take screenshots** at the exact dimensions above
+3. **Save as PNG** files with the exact names: `home.png` and `lesson.png`
+4. **Place files** directly in this `screenshots/` directory
 
 ## Screenshot Guidelines:
 
-- **home.png**: Should show the main navigation and app features
-- **lesson.png**: Should show an active lesson with vocabulary cards
-- Use high-quality images that clearly demonstrate your app's functionality
-- Ensure text is readable and the app looks polished
+- ✅ **High quality** PNG images
+- ✅ **Exact dimensions** (don't crop or resize)
+- ✅ **Clean interface** - no browser UI, no debugging tools
+- ✅ **Representative content** - show real app functionality
+- ✅ **Good contrast** - text should be readable
+- ✅ **Branded** - include your app's visual identity
+
+## File Structure:
+```
+public/
+  screenshots/
+    home.png      ← 1280×720 wide screenshot
+    lesson.png    ← 390×844 narrow screenshot
+    README.md     ← this file
+```
+
+The screenshots will be automatically included in your PWA manifest and displayed in app stores!
