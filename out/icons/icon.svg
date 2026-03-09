@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#3D2010"/>
+  <circle cx="256" cy="256" r="200" fill="#C8852A"/>
+  <text x="256" y="320" font-family="serif" font-size="200" font-weight="bold" text-anchor="middle" fill="#F5E6C8">iT</text>
+</svg>
