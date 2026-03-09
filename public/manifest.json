@@ -2,11 +2,15 @@
   "name": "iTárók — Learn Tarok Language",
   "short_name": "iTárók",
   "description": "Learn to speak iTárók, spoken by 520,000 people in Nigeria. With AI tutor Zaki the cheetah!",
+  "id": "/?source=pwa",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFCE8",
   "theme_color": "#F5A623",
   "orientation": "portrait",
+  "serviceworker": {
+    "src": "/sw.js"
+  },
   "icons": [
     {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
     {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png"}
