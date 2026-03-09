@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Bebas Neue', 'Georgia', serif;
+  --font-body: 'Nunito', sans-serif;
+
+  /* Cheetah palette */
+  --gold:   #F5A623;
+  --amber:  #E07B00;
+  --dark:   #1A1208;
+  --spot:   #2D1F00;
+  --cream:  #FFFCE8;
+  --tan:    #C4862A;
+  --light:  #FFF4CC;
+  --black:  #0D0A03;
+  --muted:  #8B6914;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--dark);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── CHEETAH SPOT PATTERN ─────────────────────────── */
+.cheetah-bg {
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(ellipse 14px 10px at 40px 30px,  rgba(45,31,0,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 10px 14px at 120px 80px, rgba(45,31,0,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 12px  8px at 200px 20px, rgba(45,31,0,0.08) 60%, transparent 100%),
+    radial-gradient(ellipse  8px 12px at 280px 70px, rgba(45,31,0,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 14px  9px at 350px 40px, rgba(45,31,0,0.08) 60%, transparent 100%),
+    radial-gradient(ellipse 10px 13px at  70px 150px,rgba(45,31,0,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 13px  8px at 160px 130px,rgba(45,31,0,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse  9px 14px at 240px 170px,rgba(45,31,0,0.08) 60%, transparent 100%),
+    radial-gradient(ellipse 11px  9px at 320px 120px,rgba(45,31,0,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 14px 10px at  10px 250px,rgba(45,31,0,0.08) 60%, transparent 100%),
+    radial-gradient(ellipse  9px 13px at 100px 230px,rgba(45,31,0,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 13px  9px at 180px 270px,rgba(45,31,0,0.08) 60%, transparent 100%),
+    radial-gradient(ellipse 10px 12px at 270px 250px,rgba(45,31,0,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 14px  8px at 340px 230px,rgba(45,31,0,0.08) 60%, transparent 100%);
+  background-size: 380px 300px;
+}
+
+/* Header spot overlay */
+.cheetah-header {
+  background: linear-gradient(160deg, #1A1208 0%, #2D1F00 55%, #3D2A00 100%);
+  position: relative;
+  overflow: hidden;
+}
+.cheetah-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse 18px 12px at  30px  20px, rgba(245,166,35,0.12) 60%, transparent 100%),
+    radial-gradient(ellipse 14px 18px at 100px  60px, rgba(245,166,35,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 20px 13px at 180px  15px, rgba(245,166,35,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 12px 20px at 260px  50px, rgba(245,166,35,0.11) 60%, transparent 100%),
+    radial-gradient(ellipse 18px 12px at 340px  25px, rgba(245,166,35,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 15px 10px at  60px 110px, rgba(245,166,35,0.09) 60%, transparent 100%),
+    radial-gradient(ellipse 12px 17px at 140px  95px, rgba(245,166,35,0.11) 60%, transparent 100%),
+    radial-gradient(ellipse 19px 12px at 220px 120px, rgba(245,166,35,0.10) 60%, transparent 100%),
+    radial-gradient(ellipse 13px 18px at 300px  90px, rgba(245,166,35,0.09) 60%, transparent 100%);
+  background-size: 380px 160px;
+  pointer-events: none;
+}
+
+/* ─── CARD HOVER ──────────────────────────────────── */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(45,31,0,0.18);
+}
+
+/* ─── FLIP CARD ──────────────────────────────────── */
+.flip-card { perspective: 1100px; }
+.flip-card-inner {
+  transition: transform 0.55s cubic-bezier(.4,0,.2,1);
+  transform-style: preserve-3d;
+  position: relative; width: 100%; height: 100%;
+}
+.flip-card-inner.flipped { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute; width: 100%; height: 100%;
+  backface-visibility: hidden; border-radius: 1.25rem;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ─── PROGRESS ───────────────────────────────────── */
+.progress-bar {
+  background: linear-gradient(90deg, var(--gold), var(--amber));
+  transition: width 0.4s ease;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(14px) } to { opacity:1; transform:translateY(0) } }
+@keyframes slideIn  { from { opacity:0; transform:translateX(-18px) } to { opacity:1; transform:translateX(0) } }
+@keyframes pop      { 0%,100% { transform:scale(1) } 50% { transform:scale(1.06) } }
+@keyframes pulse    { 0%,100% { opacity:1 } 50% { opacity:0.5 } }
+@keyframes bounce   { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-6px) } }
+@keyframes roar     { 0%,100% { transform:scale(1) rotate(0deg) } 25% { transform:scale(1.04) rotate(-2deg) } 75% { transform:scale(1.04) rotate(2deg) } }
+@keyframes soundwave {
+  0%,100% { transform:scaleY(0.3) }
+  50%     { transform:scaleY(1.0) }
+}
+@keyframes tailSwing {
+  0%,100% { transform: rotate(-10deg) }
+  50%     { transform: rotate(10deg) }
+}
+@keyframes blink {
+  0%,90%,100% { transform:scaleY(1) }
+  95%          { transform:scaleY(0.05) }
+}
+@keyframes typewriter {
+  from { width:0 }
+  to   { width:100% }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center }
+  100% { background-position:  200% center }
+}
+
+.animate-fade-up  { animation: fadeUp  0.4s ease forwards; }
+.animate-slide-in { animation: slideIn 0.3s ease forwards; }
+.animate-pop      { animation: pop     0.35s ease; }
+.animate-pulse-s  { animation: pulse   1.2s ease infinite; }
+.animate-bounce-s { animation: bounce  1.8s ease infinite; }
+.animate-roar     { animation: roar    0.5s ease; }
+
+/* Sound-wave bars */
+.sound-bar { display:inline-block; width:3px; border-radius:3px; background: var(--gold); }
+.sound-bar:nth-child(1) { animation: soundwave 0.6s 0.0s ease infinite; }
+.sound-bar:nth-child(2) { animation: soundwave 0.6s 0.1s ease infinite; }
+.sound-bar:nth-child(3) { animation: soundwave 0.6s 0.2s ease infinite; }
+.sound-bar:nth-child(4) { animation: soundwave 0.6s 0.1s ease infinite; }
+.sound-bar:nth-child(5) { animation: soundwave 0.6s 0.0s ease infinite; }
+
+/* Cheetah eye blink */
+.cheetah-eye { animation: blink 4s ease infinite; transform-origin: center; }
+
+/* Cheetah tail */
+.cheetah-tail { animation: tailSwing 1.8s ease-in-out infinite; transform-origin: top center; }
+
+/* Shimmer text */
+.shimmer {
+  background: linear-gradient(90deg, var(--gold) 25%, #fff8e0 50%, var(--gold) 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* Chat bubble tails */
+.bubble-tutor::after {
+  content:''; position:absolute; bottom:-9px; left:18px;
+  border:10px solid transparent; border-top-color: #2D1F00;
+  border-bottom:0; margin-left:-5px;
+}
+.bubble-user::after {
+  content:''; position:absolute; bottom:-9px; right:18px;
+  border:10px solid transparent; border-top-color: var(--gold);
+  border-bottom:0; margin-right:-5px;
+}
+
+/* Video card shimmer placeholder */
+.video-placeholder {
+  background: linear-gradient(135deg, #1A1208 0%, #2D1F00 100%);
+}
+
+.font-display { font-family: var(--font-display); }

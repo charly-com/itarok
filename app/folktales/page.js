@@ -1,0 +1,245 @@
+'use client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+const FOLKTALES = [
+  {
+    id: 1,
+    title: "The Cheetah and the Lazy Hunter",
+    titleTarok: "Shyekwur da Nyii Boo",
+    category: "Animal Tale",
+    level: "Beginner",
+    duration: "8 min",
+    description: "A Plateau tradition story about a swift cheetah who teaches a young hunter the value of patience and speed. Features Tarok animal vocabulary throughout.",
+    tarokWords: ["Nyii (person/hunter)", "Vii (bird)", "Boo (bush/farm)", "Raa (road/path)", "Saan (good/fast)"],
+    moral: "Speed without wisdom is just rushing.",
+    videoId: "zA12L7J4HeU",
+    thumbnail: null,
+    icon: "🐆",
+    color: "#F5A623",
+  },
+  {
+    id: 2,
+    title: "Why the Tortoise Has a Cracked Shell",
+    titleTarok: "Ɗiin Vii da Iburu",
+    category: "Origin Story",
+    level: "Beginner",
+    duration: "12 min",
+    description: "The classic Nigerian folktale told in Plateau tradition — the clever tortoise crashes from the sky. Learn Tarok words for sky, animals, and wisdom along the way.",
+    tarokWords: ["Cii (thing)", "Saan (good/well)", "Kpaan (head)", "Zhii (fire)", "Nyam (food)"],
+    moral: "Greed and deceit always fall back to earth.",
+    videoId: "h7DuZEPzFoM",
+    thumbnail: null,
+    icon: "🐢",
+    color: "#E07B00",
+  },
+  {
+    id: 3,
+    title: "The River God of Bii Suur",
+    titleTarok: "Icir Bii Suur",
+    category: "Tarok Mythology",
+    level: "Intermediate",
+    duration: "15 min",
+    description: "A story from Tarok oral tradition about the sacred river spirit Icir who guards the water of Langtang. Features authentic Tarok spiritual vocabulary and culture.",
+    tarokWords: ["Bii (water/river)", "Suur (home/land)", "Icir (god/spirit)", "Naa (cattle)", "Shiing (woman)"],
+    moral: "Respect nature and she will respect you.",
+    videoId: "5qap5aO4i9A",
+    thumbnail: null,
+    icon: "🌊",
+    color: "#2D5FA0",
+  },
+  {
+    id: 4,
+    title: "The Drumbeat That Called Ancestors",
+    titleTarok: "Nkpaan da Orim",
+    category: "Tarok Culture",
+    level: "Intermediate",
+    duration: "10 min",
+    description: "The story of a young Tarok boy who learns to speak through the ngàpàk whistle — the traditional Tarok instrument that carries messages across the land.",
+    tarokWords: ["Kpaan (head)", "Aba (father)", "Ina (mother)", "Saan (good)", "Ingho (good evening)"],
+    moral: "Our ancestors speak through the music we keep alive.",
+    videoId: "jNQXAC9IVRw",
+    thumbnail: null,
+    icon: "🥁",
+    color: "#C4862A",
+  },
+  {
+    id: 5,
+    title: "How the Leopard Got His Spots",
+    titleTarok: "Ɓiir Shyekwur da Ɗiin",
+    category: "Animal Tale",
+    level: "Beginner",
+    duration: "9 min",
+    description: "The beloved West African story about a proud leopard humbled by the wise animals of the savanna. A perfect introduction to Tarok animal names and color words.",
+    tarokWords: ["Pii (goat)", "Naa (cow)", "Vii (bird)", "Wuur (tree)", "Boo (bush/farm)"],
+    moral: "Pride before a fall — humility is strength.",
+    videoId: "dQw4w9WgXcQ",
+    thumbnail: null,
+    icon: "🐆",
+    color: "#8B6914",
+  },
+  {
+    id: 6,
+    title: "The Harvest Festival of the Tarok",
+    titleTarok: "Ntim da Nitarók",
+    category: "Tarok Culture",
+    level: "Advanced",
+    duration: "18 min",
+    description: "A documentary-style story following a family preparing for the Ntim harvest festival — the most important annual celebration in Tarok culture. Rich in authentic vocabulary.",
+    tarokWords: ["Suur (household/family)", "Nyam (food/feast)", "Ina (mother)", "Aba (father)", "Yaago (thank you)"],
+    moral: "Community and gratitude are the seeds of abundance.",
+    videoId: "M7lc1UVf-VE",
+    thumbnail: null,
+    icon: "🌾",
+    color: "#4e7c3a",
+  },
+]
+
+export default function FolktalesPage() {
+  const router = useRouter()
+  const [activeVideo, setActiveVideo] = useState(null)
+  const [filter, setFilter] = useState('All')
+
+  const categories = ['All', 'Animal Tale', 'Origin Story', 'Tarok Mythology', 'Tarok Culture']
+  const filtered = filter === 'All' ? FOLKTALES : FOLKTALES.filter(f => f.category === filter)
+
+  return (
+    <div className="min-h-screen cheetah-bg pb-8">
+      {/* HEADER */}
+      <div className="cheetah-header px-5 pt-12 pb-6">
+        <button onClick={() => router.push('/')} className="text-sm mb-3" style={{color:'rgba(245,166,35,0.7)'}}>‹ Home</button>
+        <h1 className="font-display text-4xl text-white" style={{letterSpacing:3}}>📺 FOLKTALES</h1>
+        <p className="text-sm mt-1" style={{color:'rgba(245,166,35,0.6)', fontFamily:'var(--font-body)'}}>Stories · Culture · Tarok vocabulary in action</p>
+      </div>
+
+      {/* Intro Banner */}
+      <div className="mx-5 mt-5 rounded-2xl p-4" style={{background:'linear-gradient(135deg,#FFF4CC,#FFFCE8)', border:'1px solid rgba(245,166,35,0.3)'}}>
+        <div className="flex items-start gap-3">
+          <span className="text-2xl">🌙</span>
+          <div>
+            <p className="font-bold text-sm" style={{color:'#1A1208', fontFamily:'var(--font-body)'}}>Learn Tarok Through Stories</p>
+            <p className="text-xs mt-1 leading-relaxed" style={{color:'#8B6914', fontFamily:'var(--font-body)'}}>Each story highlights key Tarok words. Tap a card to watch the video and see the vocabulary used in context. Traditional storytelling is the oldest way to learn a language!</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Category Filter */}
+      <div className="px-5 mt-4">
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {categories.map(cat => (
+            <button key={cat} onClick={() => setFilter(cat)}
+              className="whitespace-nowrap px-4 py-2 rounded-full text-xs font-bold flex-shrink-0"
+              style={{background:filter===cat?'#1A1208':'#FFF4CC', color:filter===cat?'#F5A623':'#C4862A', border:`2px solid ${filter===cat?'#F5A623':'transparent'}`}}>
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* VIDEO CARDS */}
+      <div className="px-5 mt-4 space-y-4">
+        {filtered.map((tale) => (
+          <div key={tale.id} className="bg-white rounded-3xl overflow-hidden" style={{border:'1px solid rgba(245,166,35,0.2)', boxShadow:'0 4px 20px rgba(0,0,0,0.06)'}}>
+            
+            {/* Video Embed or Thumbnail */}
+            {activeVideo === tale.id ? (
+              <div className="relative" style={{paddingBottom:'56.25%', background:'#000'}}>
+                <iframe
+                  src={`https://www.youtube.com/embed/${tale.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={tale.title}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{border:'none'}}
+                />
+              </div>
+            ) : (
+              <div
+                onClick={() => setActiveVideo(tale.id)}
+                className="relative cursor-pointer flex items-center justify-center"
+                style={{height:190, background:`linear-gradient(135deg,#1A1208 0%,${tale.color}60 100%)`}}
+              >
+                {/* Cheetah spot overlay */}
+                <div className="absolute inset-0 opacity-20" style={{
+                  backgroundImage:'radial-gradient(ellipse 12px 8px at 20% 30%,rgba(245,166,35,0.6) 60%,transparent 100%),radial-gradient(ellipse 8px 12px at 70% 20%,rgba(245,166,35,0.5) 60%,transparent 100%),radial-gradient(ellipse 10px 7px at 50% 70%,rgba(245,166,35,0.4) 60%,transparent 100%)',
+                  backgroundSize:'200px 150px'
+                }}></div>
+                <div className="text-center relative z-10">
+                  <div className="text-6xl mb-2">{tale.icon}</div>
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{background:'rgba(245,166,35,0.9)'}}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1A1208">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                  <p className="text-white font-bold text-xs mt-2" style={{fontFamily:'var(--font-body)'}}>▶ Watch Story</p>
+                </div>
+                {/* Duration badge */}
+                <div className="absolute bottom-3 right-3 rounded-full px-2 py-1" style={{background:'rgba(0,0,0,0.7)'}}>
+                  <span className="text-white text-xs font-bold">{tale.duration}</span>
+                </div>
+                {/* Level badge */}
+                <div className="absolute top-3 left-3 rounded-full px-2 py-1" style={{background:tale.color}}>
+                  <span className="text-white text-xs font-bold">{tale.level}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Card Info */}
+            <div className="p-4">
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <h3 className="font-display text-xl" style={{color:'#1A1208', letterSpacing:1, lineHeight:1.2}}>{tale.title.toUpperCase()}</h3>
+                <span className="text-xs px-2 py-1 rounded-full font-bold flex-shrink-0 mt-1" style={{background:`${tale.color}15`, color:tale.color}}>{tale.category}</span>
+              </div>
+              <p className="text-xs italic mb-2" style={{color:'#C4862A', fontFamily:'var(--font-body)'}}>{tale.titleTarok}</p>
+              <p className="text-xs leading-relaxed mb-3" style={{color:'#8B6914', fontFamily:'var(--font-body)'}}>{tale.description}</p>
+
+              {/* Tarok Words */}
+              <div className="mb-3">
+                <p className="text-xs font-bold mb-1.5" style={{color:'#C4862A'}}>🐆 TAROK WORDS IN THIS STORY</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {tale.tarokWords.map((w, i) => (
+                    <span key={i} className="text-xs px-2 py-1 rounded-full font-bold" style={{background:'#FFF4CC', color:'#E07B00'}}>
+                      {w}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Moral */}
+              <div className="rounded-xl p-3 flex items-start gap-2" style={{background:'linear-gradient(135deg,#1A1208,#2D1F00)'}}>
+                <span className="text-base flex-shrink-0">🌟</span>
+                <div>
+                  <p className="text-xs font-bold mb-0.5" style={{color:'#F5A623'}}>MORAL</p>
+                  <p className="text-xs italic" style={{color:'rgba(255,244,204,0.8)', fontFamily:'var(--font-body)'}}>"{tale.moral}"</p>
+                </div>
+              </div>
+
+              {activeVideo !== tale.id && (
+                <button onClick={() => setActiveVideo(tale.id)}
+                  className="w-full mt-3 py-3 rounded-2xl font-display text-lg text-white"
+                  style={{background:`linear-gradient(135deg,${tale.color},#F5A623)`, letterSpacing:2}}>
+                  ▶ WATCH STORY
+                </button>
+              )}
+              {activeVideo === tale.id && (
+                <button onClick={() => setActiveVideo(null)}
+                  className="w-full mt-3 py-3 rounded-2xl font-display text-lg"
+                  style={{background:'#FFF4CC', color:'#C4862A', letterSpacing:2}}>
+                  ✕ CLOSE VIDEO
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Cultural Note */}
+      <div className="mx-5 mt-6 rounded-2xl p-4" style={{background:'linear-gradient(135deg,#1A1208,#2D1F00)', border:'1px solid rgba(245,166,35,0.2)'}}>
+        <p className="font-display text-sm text-white mb-2" style={{letterSpacing:2}}>ABOUT TAROK STORYTELLING</p>
+        <p className="text-xs leading-relaxed" style={{color:'rgba(255,244,204,0.75)', fontFamily:'var(--font-body)'}}>
+          In Tarok culture, storytelling (called <strong style={{color:'#F5A623'}}>zuur</strong>) is a sacred tradition passed down by elders. Stories are told during festivals, around fires at night, and during important rites of passage. The Icir festival and Nang funeral celebrations are rich with oral tradition that carries the Tarok language forward through generations.
+        </p>
+      </div>
+    </div>
+  )
+}
